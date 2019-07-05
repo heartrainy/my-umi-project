@@ -80,7 +80,8 @@ if (isAntDesignProPreview) {
 export default {
   plugins,
   block: {
-    defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
+    // defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
+    defaultGitUrl: 'https://github.com/heartrainy/pro-blocks',
   },
   hash: true,
   targets: {

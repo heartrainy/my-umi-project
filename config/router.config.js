@@ -6,6 +6,21 @@ export default [
     authority: ['admin', 'user'],
     routes: [
       {
+        name: '项目地址',
+        path: '/address',
+        component: './Address',
+      },
+      {
+        name: 'card-list',
+        path: '/cardlist',
+        component: './CardList',
+      },
+      {
+        name: 'table-list',
+        path: '/tablelist',
+        component: './TableList',
+      },
+      {
         path: '/',
         name: 'welcome',
         icon: 'smile',
@@ -19,4 +34,4 @@ export default [
   {
     component: './404',
   },
-]
+];
