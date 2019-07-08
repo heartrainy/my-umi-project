@@ -24,7 +24,7 @@ import { SorterResult } from 'antd/es/table';
 import { connect } from 'dva';
 import moment from 'moment';
 import { StateType } from './model';
-// import CreateForm from './components/CreateForm';
+import CreateForm from './components/CreateForm';
 import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
 // import UpdateForm, { FormValsType } from './components/UpdateForm';
 import { TableListItem, TableListPagination, TableListParams } from './data.d';
@@ -435,11 +435,7 @@ class TableList extends Component<TableListProps, TableListState> {
             />
           </div>
         </Card>
-        {
-          /**
-           * <CreateForm {...parentMethods} modalVisible={modalVisible} />
-           */
-        }
+        <CreateForm {...parentMethods} modalVisible={modalVisible} />
         
         {
           /*
