@@ -67,7 +67,7 @@ interface TableListState {
     };
   }) => ({
     tableList,
-    loading: loading.models.rule,
+    loading: loading.models.tableList,
   }),
 )
 class TableList extends Component<TableListProps, TableListState> {
