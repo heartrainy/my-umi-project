@@ -6,11 +6,6 @@ export default [
     authority: ['admin', 'user'],
     routes: [
       {
-        name: 'testtable',
-        path: '/testtable',
-        component: './TestBlock',
-      },
-      {
         name: '项目地址',
         path: '/address',
         component: './Address',
