@@ -21,6 +21,11 @@ export default [
         component: './TableList',
       },
       {
+        name: 'table',
+        path: '/list/table',
+        component: './list/table',
+      },
+      {
         path: '/',
         name: 'welcome',
         icon: 'smile',

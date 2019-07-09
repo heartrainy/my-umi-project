@@ -1,13 +1,17 @@
 import { parse } from 'url';
-import { TableListItem, TableListParams } from './data.d';
+import moment from 'moment';
 
 // mock tableListDataSource
-let tableListDataSource: TableListItem[] = [];
+let tableListDataSource: any[] = [];
 
-for (let i = 0; i < 8; i += 1) {
+for (let i = 0; i < 1; i += 1) {
   tableListDataSource.push({
     key: i,
-    disabled: i % 6 === 0,
+    column1: `column1_${i}`,
+    column2: Math.floor(Math.random() * 10) % 4,
+    column3: Math.floor(Math.random() * 1000),
+    column4: new Date(`2019-07-${Math.floor(i / 2) + 1}`).getTime(),
+    column5: Math.floor(Math.random() * 10) % 4,
     href: 'https://ant.design',
     avatar: [
       'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
@@ -30,7 +34,7 @@ function getRule(
   res: {
     json: (
       arg0: {
-        list: TableListItem[];
+        list: any[];
         pagination: { total: number; pageSize: number; current: number };
       },
     ) => void;
@@ -43,7 +47,7 @@ function getRule(
     url = req.url;
   }
 
-  const params = (parse(url, true).query as unknown) as TableListParams;
+  const params = parse(url, true).query;
 
   let dataSource = tableListDataSource;
 
@@ -59,7 +63,7 @@ function getRule(
 
   if (params.status) {
     const status = params.status.split(',');
-    let filterDataSource: TableListItem[] = [];
+    let filterDataSource: any[] = [];
     status.forEach((s: string) => {
       filterDataSource = filterDataSource.concat(
         dataSource.filter(item => {
@@ -73,8 +77,24 @@ function getRule(
     dataSource = filterDataSource;
   }
 
-  if (params.name) {
-    dataSource = dataSource.filter(data => data.name.indexOf(params.name) > -1);
+  if (params.column1) {
+    dataSource = dataSource.filter(data => data.column1.indexOf(params.column1) > -1);
+  }
+
+  if (params.column2) {
+    dataSource = dataSource.filter(data => data.column2 == params.column2);
+  }
+
+  if (params.column3) {
+    dataSource = dataSource.filter(data => data.column3 == params.column3);
+  }
+
+  if (params.column4) {
+    dataSource = dataSource.filter(data => data.column4 <= moment(params.column4).valueOf());
+  }
+
+  if (params.column5) {
+    dataSource = dataSource.filter(data => data.column5 == params.column5);
   }
 
   let pageSize = 10;
@@ -96,7 +116,7 @@ function getRule(
 
 function postRule(
   req: { url: any; body: any },
-  res: { json: (arg0: { list: TableListItem[]; pagination: { total: number } }) => void },
+  res: { json: (arg0: { list: any[]; pagination: { total: number } }) => void },
   u: any,
   b: { body: any },
 ) {
@@ -107,7 +127,7 @@ function postRule(
   }
 
   const body = (b && b.body) || req.body;
-  const { method, name, desc, key } = body;
+  const { method, name, desc, key, column1, column2, column3, column4, column5 } = body;
 
   switch (method) {
     /* eslint no-case-declarations:0 */
@@ -118,6 +138,11 @@ function postRule(
       const i = Math.ceil(Math.random() * 10000);
       tableListDataSource.unshift({
         key: i,
+        column1: column1,
+        column2: column2,
+        column3: column3,
+        column4: column4,
+        column5: column5,
         href: 'https://ant.design',
         avatar: [
           'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
@@ -137,7 +162,7 @@ function postRule(
     case 'update':
       tableListDataSource = tableListDataSource.map(item => {
         if (item.key === key) {
-          return { ...item, desc, name };
+          return { ...item, column1, column2, column3, column4, column5 };
         }
         return item;
       });
