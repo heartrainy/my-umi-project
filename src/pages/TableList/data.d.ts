@@ -1,5 +1,10 @@
 export interface TableListItem {
   key: number;
+  column1?: string;
+  column2?: number;
+  column3?: number;
+  column4?: number;
+  column5?: number;
   disabled?: boolean;
   href: string;
   avatar: string;
