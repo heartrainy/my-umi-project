@@ -40,7 +40,7 @@ const getValue = (obj: { [x: string]: string[] }) =>
 interface TableListProps extends FormComponentProps {
   dispatch: Dispatch<any>;
   loading: boolean;
-  tableList: StateType;
+  moive: StateType;
 }
 
 interface TableListState {
@@ -63,18 +63,18 @@ const OptionStatus: any[] = [
 /* eslint react/no-multi-comp:0 */
 @connect(
   ({
-    tableList,
+    moive,
     loading,
   }: {
-    tableList: StateType;
+    moive: StateType;
     loading: {
       models: {
         [key: string]: boolean;
       };
     };
   }) => ({
-    tableList,
-    loading: loading.models.tableList,
+    moive,
+    loading: loading.models.moive,
   }),
 )
 class TableList extends Component<TableListProps, TableListState> {
@@ -128,7 +128,7 @@ class TableList extends Component<TableListProps, TableListState> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'tableList/fetch',
+      type: 'moive/fetch',
     });
   }
 
@@ -157,7 +157,7 @@ class TableList extends Component<TableListProps, TableListState> {
     }
 
     dispatch({
-      type: 'tableList/fetch',
+      type: 'moive/fetch',
       payload: params,
     });
   };
@@ -169,7 +169,7 @@ class TableList extends Component<TableListProps, TableListState> {
       formValues: {},
     });
     dispatch({
-      type: 'tableList/fetch',
+      type: 'moive/fetch',
       payload: {},
     });
   };
@@ -219,7 +219,7 @@ class TableList extends Component<TableListProps, TableListState> {
       });
 
       dispatch({
-        type: 'tableList/fetch',
+        type: 'moive/fetch',
         payload: values,
       });
     });
@@ -242,7 +242,7 @@ class TableList extends Component<TableListProps, TableListState> {
     const { dispatch } = this.props;
 
     dispatch({
-      type: 'tableList/add',
+      type: 'moive/add',
       payload: {
         ...fields
       },
@@ -254,7 +254,7 @@ class TableList extends Component<TableListProps, TableListState> {
   handleUpdate = (fields: Partial<TableListItem>) => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'tableList/update',
+      type: 'moive/update',
       payload: {
         ...fields
       },
@@ -273,7 +273,7 @@ class TableList extends Component<TableListProps, TableListState> {
       cancelText: '取消',
       onOk() {
         _this.props.dispatch({
-          type: 'tableList/remove',
+          type: 'moive/remove',
           payload: {
             key: keys,
           },
@@ -406,7 +406,7 @@ class TableList extends Component<TableListProps, TableListState> {
 
   render() {
     const {
-      tableList: { data },
+      moive: { data },
       loading
     } = this.props;
 

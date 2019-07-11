@@ -6,24 +6,9 @@ export default [
     authority: ['admin', 'user'],
     routes: [
       {
-        name: '项目地址',
-        path: '/address',
-        component: './Address',
-      },
-      {
-        name: 'card-list',
-        path: '/cardlist',
-        component: './CardList',
-      },
-      {
-        name: 'table-list',
-        path: '/tablelist',
-        component: './TableList',
-      },
-      {
-        name: 'table',
-        path: '/list/table',
-        component: './list/table',
+        name: 'moive',
+        path: '/moive',
+        component: './Moive',
       },
       {
         path: '/',

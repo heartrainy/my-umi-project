@@ -28,7 +28,7 @@ export interface ModelType {
 }
 
 const Model: ModelType = {
-  namespace: 'tableList',
+  namespace: 'moive',
 
   state: {
     data: {
