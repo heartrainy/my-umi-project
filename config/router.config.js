@@ -6,11 +6,6 @@ export default [
     authority: ['admin', 'user'],
     routes: [
       {
-        name: 'moive',
-        path: '/moive',
-        component: './Moive',
-      },
-      {
         path: '/',
         name: 'welcome',
         icon: 'smile',

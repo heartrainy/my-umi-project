@@ -82,6 +82,7 @@ export default {
   block: {
     // defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
     defaultGitUrl: 'https://github.com/heartrainy/pro-blocks',
+    // defaultGitUrl: 'http://47.103.50.109:8091/heartrainy/web-block',
   },
   hash: true,
   targets: {
